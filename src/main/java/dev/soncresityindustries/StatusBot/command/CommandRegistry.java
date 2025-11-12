@@ -41,7 +41,8 @@ public class CommandRegistry {
                                 .addOption(OptionType.STRING, "serviceid", "Service ID to update", true)
                                 .addOptions(statusOption)
                                 .addOption(OptionType.STRING, "description", "New description", false)
-                                .addOption(OptionType.STRING, "outage-description", "Outage description", false),
+                                .addOption(OptionType.STRING, "outage-description", "Outage description (Use \"Remove Outage Description\" to clear it)", false)
+                                .addOption(OptionType.BOOLEAN, "remove-outage-description", "Remove the current outage description", false),
 
                         new SubcommandData("remove", "Remove a service from the list")
                                 .addOption(OptionType.STRING, "serviceid", "Service ID to remove", true),

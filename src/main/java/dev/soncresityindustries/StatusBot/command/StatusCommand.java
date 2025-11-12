@@ -104,6 +104,10 @@ public class StatusCommand extends ListenerAdapter {
                     try {
                         outageDescription = event.getOption("outage-description").getAsString();
                     } catch (NullPointerException ignored) {}
+                    boolean removeOutageDescription = false;
+                    try {
+                        removeOutageDescription = event.getOption("remove-outage-description").getAsBoolean();
+                    } catch (NullPointerException ignored) {}
 
                     if (description.isEmpty()) {
                         description = storage.getService(id).getDescription();
@@ -111,6 +115,10 @@ public class StatusCommand extends ListenerAdapter {
 
                     if (outageDescription.isEmpty()) {
                         outageDescription = storage.getService(id).getOutageDescription();
+                    }
+
+                    if (removeOutageDescription) {
+                        outageDescription = "";
                     }
 
                     storage.updateService(id, status, description, outageDescription, event.getJDA());
